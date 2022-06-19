@@ -24,6 +24,7 @@ $routes->setTranslateURIDashes(true);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
+
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -42,6 +43,13 @@ $routes->get('/', 'Home::index');
 $routes->get('/about', 'Page::about');
 $routes->get('/contact', 'Page::contact');
 $routes->get('/faqs', 'Page::faqs');
+$routes->get('/artikel/(:any)', 'Artikel::view/$1');
+$routes->group('admin', function($routes) {
+    $routes->get('artikel', 'Artikel::admin_index');
+    $routes->add('artikel/add', 'Artikel::add');
+    $routes->add('artikel/edit/(:any)', 'Artikel::edit/$1');
+    $routes->get('artikel/delete/(:any)', 'Artikel::delete/$1');
+});
 
 /*
  * --------------------------------------------------------------------
