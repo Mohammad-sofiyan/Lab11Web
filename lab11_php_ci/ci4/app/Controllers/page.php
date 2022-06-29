@@ -12,7 +12,8 @@ class Page extends BaseController
     }
     public function contact()
     {
-    echo "Ini halaman Contact";
+        $data = [ 'title' => "ini halaman contact"];
+    return view('contact',$data); 
     }
     public function faqs()
     {
